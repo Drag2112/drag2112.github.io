@@ -1,0 +1,578 @@
+/* Reset CSS */
+* {
+     padding: 0; 
+     margin: 0;
+     box-sizing: border-box;
+}
+
+html {
+     scroll-behavior: smooth;
+     font-family: Arial, Helvetica, sans-serif; /*Set font chữ cho cả web*/
+}
+
+/* 
+1. Từ ngoài vào trong 
+2. Từ trên xuống dưới
+3. Từ tổng quan đến chi tiết
+*/
+
+/* 
+1. Vị trí
+2. Kích thước
+3. Màu sắc
+4. Kiểu dáng (kiểu chữ, hình tròn, vuông,...)
+*/
+
+.clear {
+     clear: both; /*Giải quyết vấn đề thẻ cha ôm các thẻ con*/
+}
+
+.btn {
+     color: #fff;
+     background-color: #000;
+     text-decoration: none; /* Bỏ gạch chân chữ */
+     padding: 11px 16px;
+     display: inline-block; /*Không có thì sẽ đè lên chữ*/
+     border: none;
+     /*appearance: none;
+     -webkit-appearance: none; /* Bỏ đi CSS gốc tự có của thẻ trên webkit là safari và chrome */
+}
+
+.btn:hover {
+     background-color: #ccc;
+     color: #000;
+     cursor: pointer;
+}
+
+.row {
+     margin-left: -8px;
+     margin-right: -8px;
+}
+
+/* Giống clear bên trên nhma chỉ có tác dung với thẻ dùng .row và không phải dùng thẻ div nữa */
+.row::after {
+     content: "";
+     display: block;
+     clear: both;
+}
+
+.col {
+     float: left;
+     padding: 0 8px;
+}
+
+.col-half {
+     width: calc(100% / 2);
+}
+
+.col-third {
+     width: calc(100% / 3);
+}
+
+.col-full {
+     width: 100%;
+}
+
+.text-center {
+     text-align: center !important;
+}
+
+.mt-8 {
+     margin-top: 8px !important;
+}
+
+.mt-16 {
+     margin-top: 16px !important;
+}
+
+/* MAIN */
+#main {
+
+}
+
+#header {
+     height: 46px;
+     background-color: black;
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     z-index: 1; /*Cho nổi lên (z trong hệ trục Oxyz)(Bỏ đi để xem khác biệt)*/
+
+     /* nên viết trên mobile thôi */
+     /*overflow: hidden; /* Fix thằng cha cho ôm hết con (hoặc ẩn đi những thằng con) */
+}
+
+#nav {
+     display: inline-block; /*Cho cái box chỉ to bằng nội dung của nó (không là nó sẽ chiếm hết thẻ header*/
+}
+
+#nav, .subnav {
+     list-style-type: none; /*Bỏ dấu đầu dòng (Bỏ đi để xem != biệt)*/
+}
+
+#nav > li {
+     display: inline-block; /*Để xuống dưới để xem khác biệt*/
+}
+
+#nav li {
+     /* display: inline-block; */
+     position: relative;
+}
+
+#nav > li > a { /*a là thẻ con trực tiếp của li và li cũng là con trực tiếp của #nav (Nếu như bên dưới thì thẻ con cấp 2,3,.. cũng bị ảnh hưởng)*/
+     color: #fff;
+     text-transform: uppercase; /*Viết Hoa lên*/
+}
+
+#nav li a {
+     text-decoration: none; /*Bỏ gạch chân*/
+     line-height: 46px; /*Set cái khoảng chứa chữ có chiều cao bằng header*/
+     padding: 0 24px;
+     display: block; /*Cho cái thẻ a ăn theo kích thước của cái line bên trên (bỏ đi để xem khác biệt khi không có)*/
+}
+
+#nav li:hover .subnav { /*khi hover vào li thì thuộc tính sẽ áp vào subnav*/
+     display: block; /*Sẽ ghi đè lên display: none (ở #nav .subnav)*/
+}
+
+#nav .subnav li:hover, /*Dấu "," là và (Cho hai cái có CSS giống nhau)(Có thể viết cùng dòng nhma xuống cho dễ nhìn)*/
+#nav > li:hover > a{
+     color: #000;
+     background-color: #ccc;
+}
+
+#nav .subnav {
+     display: none;
+     min-width: 160px; /*Đây thì là thẻ ul còn dưới là thẻ li*/
+     top: 100%; /*Sẽ nằm dưới thẻ cha (thay vì phải căn xem baonh px)*/
+     left: 0; 
+     position: absolute;
+     background-color: #fff;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /*Hai cái bằng 0 để tỏa đều kh lệch trái hay phải*/
+}
+
+#nav .subnav a {
+     /* min-width: 160px; */
+     color: #000;
+     line-height: 22px;
+     padding: 8px 16px; /*Cho cái viền thụt vào so với cái MORE*/
+}
+
+#nav .icon-down {
+     font-size: 12px;
+}
+
+#header .monile-menu-btn,
+#header .search-button {
+     float: right; /*Kéo nó sang góc phải*/
+     padding: 0 21px;
+     /*cursor: pointer; /*Nếu có hover thì nên đặt trong hover*/
+}
+
+#header .monile-menu-btn {
+     position: absolute;
+     top: 0;
+     right: 0;
+     display: none; /* Cho nó không hiện trên PC & TABLET */
+}
+
+#header .monile-menu-btn:hover,
+#header .search-button:hover {
+     color: #fff;
+     background-color: #f44336;
+     cursor: pointer;
+}
+
+#header .monile-menu-btn:hover {
+     background-color: #ccc;
+}
+
+#header .monile-menu-btn:hover .menu-icon {
+     color: #000;
+}
+
+#header .menu-icon,
+#header .icon-search {
+     color: #fff;
+     line-height: 46px; /*Chỉnh ra giữa (Giống đoạn #nav li a)*/
+}
+
+#slider {
+     position: relative;
+     margin-top: 46px;
+     padding-top: 50%; /*Lấy 50% của chính nó (phần content)*/
+     background: url('/assets/img/slider/slider1.jpg') top center / cover no-repeat;
+     /* URL tương đối "./assets/img/slider/slider1.jpg" có dấu "." là tìm thư mục ngang hàng với thư mục style.css này (muốn nhảy ra ngoài thì dùng ".." - để nó nhảy ra ngoài thư mục to hơn tìm được rộng hơn) */
+}
+
+#slider .text-content {
+     position: absolute;
+     color: #fff;
+     bottom: 47px;
+     /* Cách 1 */
+     /* left: 50%;
+     transform: translateX(-50%); */ 
+
+     /* Cách 2 */
+     width: 100%;
+
+     /* Cách 3 */
+     /* right: 0;
+     left: 0; */
+     text-align: center;
+}
+
+#slider .text-heading {
+     font-weight: 500; /*Độ dày của chữ*/
+     font-size: 24px;
+     margin: 10px 0;
+}
+
+#slider .text-description {
+     font-size: 15px;
+     margin: 15px 0;
+     text-shadow: 0 0 2px #000;
+}
+
+
+#content {
+     max-width: 100%;
+     height: 1000px;
+     background: #fff;
+     display: inline-block; /* Bỏ đi là sẽ đè MAP lên FOOTER*/
+}
+
+#content .content-section {
+     width: 800px;
+     max-width: 100%;
+     padding: 64px 0 112px;
+     margin-left: auto;
+     margin-right: auto;
+     padding-left: 16px;
+     padding-right: 16px;
+}
+
+#content .section-heading {
+     font-size: 30px;
+     font-weight: 500;
+     letter-spacing: 4px;
+     margin: 10px 0;
+     text-align: center;
+}
+
+#content .section-sub-heading {
+     font-size: 15px;
+     margin: 15px 0; 
+     text-align: center;
+     font-style: italic;
+     opacity: 0.6; /*Làm mờ chữ (1 là bthg)*/
+}
+
+#content .about-text {
+     font-size: 15px;
+     margin: 15px 0;
+     text-align: justify;
+     line-height: 1.4; /*Khoảng cách 2 dòng (1.4-1.6)*/
+}
+
+#content .member-list {
+     padding: 16px 0; /* Cộng thêm với 16px của mt-16 trong thẻ con */
+     overflow: hidden; /*Để thẻ cha ôm hết thẻ con (Vì khi có float: left; nó sẽ kh ôm nữa)*/
+     /* Hoặc dùng clear thay cho overflow: hidden; */
+}
+
+#content .member-item {
+     /* Dùng class chung thay cho 2 cái này */
+     /* float: left;
+     width: calc(100% / 3); */
+     /* width: 33.333333%; */
+
+     /*text-align: center; /*Cho cả name với img ra giữa*/
+}
+
+#content .member-name {
+     font-size: 15px;
+     text-align: center;
+     margin: 15px 0;
+}
+
+#content .member-img {
+     width: 154px; /*Đặt 1 chiều là được (Vì là thẻ img)*/
+     margin: 15px 0;
+     border-radius: 4px;
+}
+
+/* Tour */
+.tour-section {
+     background-color: #000;
+     color: #fff;
+}
+
+.ticket-list {
+     color: #000;
+     list-style-type: none;
+     background-color: #fff;
+     margin: 40px 0;
+}
+
+.ticket-list li {
+     color: #757575;
+     font-size: 15px;
+     padding: 11px 16px;
+     border-bottom: 1px solid #ddd;
+}
+
+.ticket-list .sold-out {
+     background-color: #f44336;
+     color: #fff;
+     padding: 3px 4px;
+     margin-left: 16px;
+}
+
+.ticket-list .quantity {
+     float: right; /*Khi có thẻ này thẻ sẽ được hiểu có display: block*/
+     width: 24px;
+     height: 24px;
+     background-color: #000;
+     color: #fff;
+     border-radius: 50%;
+     text-align: center; /*Căn giữa từ trái qua phải*/
+     line-height: 24px; /*Căn giữa từ trên xuống dưới (bằng chiều cao height)*/
+     margin-top: -2px; /*Phải có float*/
+}
+
+/* Places */
+.place-list {
+     margin-top: 16px; /* Cộng với 16px ở mt-16 khi thêm vào các thẻ con nữa là thành 32px */
+     padding-bottom: 32px;
+}
+
+/* .place-item {
+     float: left;
+     color: #000;
+     width: calc(100% / 3);
+     padding: 0px 8px;
+} */
+
+.place-img {
+     width: 100%; /*Cho bằng kích thước thẻ chứa nó*/
+     display: block; /* Bỏ đi là sẽ bị đẩy body ra 1 đoạn nhỏ (Mặc định là inline-sẽ có 1 khoảng như vậy) */
+}
+
+.place-img:hover {
+     opacity: 0.6; /* Làm mờ */
+}
+
+.place-body {
+     color: #000;
+     padding: 16px;
+     font-size: 15px;
+     background-color: #fff;
+}
+
+.place-heading {
+     font-size: 15px;
+     font-weight: 600;
+     margin: 15px 0;
+}
+
+.place-time {
+     margin: 15px 0;
+     opacity: 0.6;
+}
+
+.place-desc {
+     margin: 15px 0;
+}
+
+
+/* contact */
+.contact-content {
+     margin-top: 48px;
+}
+
+.contact-info {
+     font-size: 18px;
+     line-height: 1.5;
+}
+
+.contact-info i[class*="ti-"] {
+     width: 30px;
+     display: inline-block;
+}
+
+.contact-info a {
+     opacity: 1;
+}
+
+.contact-info a:hover {
+     opacity: 0.6;
+}
+
+.contact-form {
+     font-size: 15px;
+}
+
+.contact-form .form-control {
+     padding: 10px;
+     border: 1px solid #ccc;
+     width: 100%;
+     font-size: 16px;
+}
+
+.contact-form .form-submit-btn {
+     float: right;
+}
+
+/* MAP */
+.map-section img {
+     width: 100%;
+}
+
+/* FOOTER */
+#footer {
+     padding: 64px 16px;
+     text-align: center;
+}
+
+#footer .socials-list {
+     font-size: 24px;
+}
+
+#footer .socials-list a {
+     color: rgba(0, 0, 0, 0.6);
+     text-decoration: none;
+}
+
+#footer .copyright {
+     margin-top: 15px;
+     color: rgba(0, 0, 0, 0.6);
+}
+
+#footer .copyright {
+     margin-top: 15px;
+     color: rgba(0, 0, 0, 0.6);
+}
+
+#footer .copyright a {
+     color: rgba(0, 0, 0, 0.6);
+
+}
+
+#footer .copyright a:hover,
+#footer .socials-list a:hover {
+     color: rgba(0, 0, 0, 0.3);
+}
+
+
+/* MODAL */
+.modal {
+     position: fixed;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0;
+     background: rgba(0, 0, 0, 0.4);
+     /*display: flex; /*Có mới làm đc hai thằng dưới*/
+     align-items: center; /* Nằm giữa chiều cao của thẻ cha*/
+     justify-content: center; /* Nằm giữa chiều ngang của thẻ cha*/
+     display: none;
+}
+
+.modal.open {
+     display: flex;
+}
+
+.modal-container {
+     background-color: #fff;
+     width: 900px;
+     max-width: calc(100% - 32px); /* Khi màn hình co lại thì cái ô ticket cũng sẽ co lại nếu bé quá */
+     min-height: 200px;
+     position: relative;
+     animation: modalFadeIn ease 0.4s; /* Cái nào cần hiệu ứng thì thêm vào (tên của keyframes - hiệu ứng - tgian) */
+}
+
+.modal-close {
+     position: absolute;
+     right: 0;
+     top: 0;
+     color: #fff;
+     padding: 12px;
+     cursor: pointer;
+     opacity: 0.7;
+}
+
+.modal-close:hover {
+     opacity: 1;
+}
+
+.modal-header {
+     background-color: #009688;
+     height: 130px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 30px;
+     color: #fff;
+}
+
+.modal-heading-icon {
+     margin-right: 16px;
+}
+
+.modal-body {
+     padding: 16px;
+}
+
+.modal-label {
+     display: block;
+     font-size: 15px;
+     margin-bottom: 12px;
+}
+
+.modal-input {
+     border: 1px solid #ccc;
+     width: 100%;
+     padding: 10px;
+     font-size: 15px;
+     margin-bottom: 24px;
+}
+
+#buy-tickets {
+     background-color: #009688;
+     border: none;
+     color: #fff;
+     width: 100%;
+     font-size: 15px;
+     text-transform: uppercase;
+     padding: 18px;
+     cursor: pointer;
+}
+
+#buy-tickets:hover {
+     opacity: 0.7;
+}
+
+.modal-footer {
+     padding: 16px;
+     text-align: right;
+}
+
+.modal-footer a {
+     color: #2196f3;
+}
+
+@keyframes modalFadeIn {
+     /* Lúc đi vào */
+     from {
+          opacity: 0;
+          transform: translateY(-100%);
+     }
+
+     /* Lúc hiện ra */
+     to {
+          opacity: 1;
+          transform: translateY(0);
+     }
+}
