@@ -34,7 +34,7 @@ html {
      padding: 11px 16px;
      display: inline-block; /*Không có thì sẽ đè lên chữ*/
      border: none;
-     /*appearance: none;
+     appearance: none;
      -webkit-appearance: none; /* Bỏ đi CSS gốc tự có của thẻ trên webkit là safari và chrome */
 }
 
